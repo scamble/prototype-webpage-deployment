@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShoppingCart } from 'lucide-react';
+import { ProductCardSkeleton } from '../components/ui/Skeleton';
 import './Shop.css';
 
 const MOCK_PRODUCTS = [
@@ -12,6 +13,21 @@ const MOCK_PRODUCTS = [
 ];
 
 const Shop = () => {
+    const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState([]);
+
+    // Simulate picking data from an API
+    useEffect(() => {
+        const fetchProducts = async () => {
+            // Simulate network delay of 1.5 seconds
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            setProducts(MOCK_PRODUCTS);
+            setLoading(false);
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <div className="shop-page">
             <div className="shop-header">
@@ -34,20 +50,28 @@ const Shop = () => {
 
                 {/* Product Grid */}
                 <div className="clean-product-grid">
-                    {MOCK_PRODUCTS.map(product => (
-                        <div key={product.id} className="clean-product-card">
-                            <div className="clean-image-box">
-                                <img src={product.image} alt={product.name} loading="lazy" />
-                                <button className="clean-add-to-cart" aria-label="Add to cart">
-                                    <ShoppingCart size={20} strokeWidth={2.5} />
-                                </button>
+                    {loading ? (
+                        // Render 6 Skeletons while loading
+                        Array.from({ length: 6 }).map((_, index) => (
+                            <ProductCardSkeleton key={index} />
+                        ))
+                    ) : (
+                        // Render actual products when loaded
+                        products.map(product => (
+                            <div key={product.id} className="clean-product-card">
+                                <div className="clean-image-box">
+                                    <img src={product.image} alt={product.name} loading="lazy" />
+                                    <button className="clean-add-to-cart" aria-label="Add to cart">
+                                        <ShoppingCart size={20} strokeWidth={2.5} />
+                                    </button>
+                                </div>
+                                <div className="clean-product-info">
+                                    <h3 className="clean-product-name">{product.name}</h3>
+                                    <span className="clean-product-price">${product.price.toFixed(2)}</span>
+                                </div>
                             </div>
-                            <div className="clean-product-info">
-                                <h3 className="clean-product-name">{product.name}</h3>
-                                <span className="clean-product-price">${product.price.toFixed(2)}</span>
-                            </div>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
             </div>
         </div>

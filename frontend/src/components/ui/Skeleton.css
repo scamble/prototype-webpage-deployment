@@ -1,0 +1,78 @@
+/* Skeleton Animations */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.skeleton-loader {
+    background: #e2e8f0;
+    background-image: linear-gradient(to right, #e2e8f0 0%, #edf2f7 20%, #e2e8f0 40%, #e2e8f0 100%);
+    background-repeat: no-repeat;
+    background-size: 1000px 100%;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: shimmer;
+    animation-timing-function: linear;
+    border-radius: 4px;
+}
+
+/* Product Card Skeleton Specifics */
+.skeleton-card {
+    cursor: default;
+}
+
+.skeleton-card:hover {
+    transform: none;
+}
+
+.skeleton-card:hover .clean-image-box {
+    box-shadow: none;
+}
+
+.skeleton-box {
+    background-color: var(--card-bg);
+    padding: 0;
+    position: relative;
+}
+
+.skeleton-image-fill {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.skeleton-btn {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    opacity: 1 !important;
+    /* Override the hover effect from clean-add-to-cart */
+    transform: none !important;
+}
+
+.skeleton-info {
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skeleton-text {
+    height: 20px;
+    border-radius: 4px;
+}
+
+.skeleton-title {
+    width: 70%;
+}
+
+.skeleton-price {
+    width: 30%;
+}
