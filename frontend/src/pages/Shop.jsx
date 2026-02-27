@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 import { ProductCardSkeleton } from '../components/ui/Skeleton';
 import './Shop.css';
 
@@ -16,6 +16,7 @@ const MOCK_PRODUCTS = [
 const Shop = () => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
+    const { addToCart } = useCart();
 
     // Simulate picking data from an API
     useEffect(() => {
@@ -62,7 +63,14 @@ const Shop = () => {
                             <Link to={`/product/${product.id}`} key={product.id} className="clean-product-card">
                                 <div className="clean-image-box">
                                     <img src={product.image} alt={product.name} loading="lazy" />
-                                    <button className="clean-add-to-cart" aria-label="Add to cart" onClick={(e) => { e.preventDefault(); /* Prevent link navigation on add to cart */ }}>
+                                    <button
+                                        className="clean-add-to-cart"
+                                        aria-label="Add to cart"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            addToCart(product);
+                                        }}
+                                    >
                                         <ShoppingCart size={20} strokeWidth={2.5} />
                                     </button>
                                 </div>

@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, User, Search, Menu, X } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
+  const { getCartCount, toggleCart } = useCart();
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -40,8 +42,11 @@ const Navbar = () => {
           <button className="icon-btn" aria-label="Search">
             <Search size={20} strokeWidth={2.5} />
           </button>
-          <button className="icon-btn" aria-label="Cart">
+          <button className="icon-btn cart-icon-wrapper" aria-label="Cart" onClick={toggleCart}>
             <ShoppingCart size={20} strokeWidth={2.5} />
+            {getCartCount() > 0 && (
+              <span className="cart-badge">{getCartCount()}</span>
+            )}
           </button>
           <button className="icon-btn" aria-label="Account">
             <User size={20} strokeWidth={2.5} />

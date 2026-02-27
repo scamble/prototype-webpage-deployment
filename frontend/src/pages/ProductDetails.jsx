@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ShoppingCart, ArrowLeft, Star, Heart, CheckCircle2, ShieldCheck, Truck } from 'lucide-react';
+import { useCart } from '../../context/CartContext';
 import './ProductDetails.css';
 
 // Using the same mock data for consistency, but expanded with details.
@@ -49,6 +49,8 @@ const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [quantity, setQuantity] = useState(1);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         // Simulate API fetch based on ID
@@ -113,11 +115,15 @@ const ProductDetails = () => {
 
                         <div className="purchase-actions">
                             <div className="quantity-selector">
-                                <button>-</button>
-                                <span>1</span>
-                                <button>+</button>
+                                <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
+                                <span>{quantity}</span>
+                                <button onClick={() => setQuantity(quantity + 1)}>+</button>
                             </div>
-                            <button className="btn btn-primary add-to-cart-btn" disabled={!product.stock}>
+                            <button
+                                className="btn btn-primary add-to-cart-btn"
+                                disabled={!product.stock}
+                                onClick={() => addToCart(product, quantity)}
+                            >
                                 <ShoppingCart size={20} />
                                 {product.stock ? 'Add to Cart' : 'Sold Out'}
                             </button>
