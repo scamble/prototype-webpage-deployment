@@ -8,8 +8,8 @@ const Footer = () => {
             <div className="footer-container">
                 <div className="footer-grid">
                     <div className="footer-brand">
-                        <h3>Epyc <span className="text-accent">Games</span></h3>
-                        <p>Your ultimate destination for ready-to-play PlayStation games, custom PC builds, and premium gaming gear.</p>
+                        <h3>.epyc</h3>
+                        <p>EPYC Gaming Hub & Computer Sales & Service. Located in Kadappakada, Kollam. Your ultimate destination for PlayStation gaming, laptops, and custom PC builds.</p>
                         <div className="social-links">
                             <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
                             <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
@@ -28,12 +28,12 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-links">
-                        <h4>Support</h4>
+                        <h4>Store Info</h4>
                         <ul>
+                            <li><text>Kadappakada, Kollam</text></li>
+                            <li><text>Kerala, India</text></li>
                             <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Shipping Policy</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Store Hours</a></li>
                         </ul>
                     </div>
                 </div>
