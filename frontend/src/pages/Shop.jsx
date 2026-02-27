@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ShoppingCart } from 'lucide-react';
 import { ProductCardSkeleton } from '../components/ui/Skeleton';
 import './Shop.css';
@@ -58,10 +59,10 @@ const Shop = () => {
                     ) : (
                         // Render actual products when loaded
                         products.map(product => (
-                            <div key={product.id} className="clean-product-card">
+                            <Link to={`/product/${product.id}`} key={product.id} className="clean-product-card">
                                 <div className="clean-image-box">
                                     <img src={product.image} alt={product.name} loading="lazy" />
-                                    <button className="clean-add-to-cart" aria-label="Add to cart">
+                                    <button className="clean-add-to-cart" aria-label="Add to cart" onClick={(e) => { e.preventDefault(); /* Prevent link navigation on add to cart */ }}>
                                         <ShoppingCart size={20} strokeWidth={2.5} />
                                     </button>
                                 </div>
@@ -69,7 +70,7 @@ const Shop = () => {
                                     <h3 className="clean-product-name">{product.name}</h3>
                                     <span className="clean-product-price">${product.price.toFixed(2)}</span>
                                 </div>
-                            </div>
+                            </Link>
                         ))
                     )}
                 </div>
