@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { ShoppingCart, ArrowLeft, Star, Heart, CheckCircle2, ShieldCheck, Truck } from 'lucide-react';
-import { useCart } from '../../context/CartContext';
+import { useCart } from '../context/CartContext';
 import './ProductDetails.css';
 
 // Using the same mock data for consistency, but expanded with details.
