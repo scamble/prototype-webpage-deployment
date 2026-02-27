@@ -1,3 +1,3 @@
 # Epyc Games
 
-This is the repository for the Epyc Games website.
+This is the repository for a website project
